@@ -23,15 +23,12 @@ const createPosts = async (req, res) => {
     const { titulo, img, descripcion, likes } = req.body;
     const posts = await addPosts(titulo, img, descripcion, likes);
     return res.status(201).json({ message: "ha sido creado exitosamente" });
-  } catch (error) {
-    if (!res.headersSent) {
-      const errorFound = findError(error.code);
-      return res
-        .status(errorFound[0].status)
-        .json({ error: errorFound[0].message, type: errorFound[0].type });
-    }
+  }  catch (error) {
+    const errorFound = findError(error.code);
+    return res.status(errorFound[0].status).json({ error: errorFound[0].message, type: errorFound[0].type });
   }
-};
+  };
+
 
 const upDateposts = async (req, res) => {
   const { post_id } = req.params;
@@ -59,14 +56,12 @@ const deletePosts = async (req, res) => {
   const { id } = req.params;
   try {
     const posts = await destroyPosts(id);
-    res
-      .status(204)
-      .json({ message: "mensaje eliminado con exito ", rows: posts });
+   return res.status(204).json({ message: "mensaje eliminado con exito "});
   } catch (error) {
-    const errorFound = findError(error.code);
-    return res
-      .status(errorFound[0].status)
-      .json({ error: errorFound[0].message, type: errorFound[0].type });
+    // const errorFound = findError(error.code);
+    // return res
+    //   .status(errorFound[0].status)
+    //   .json({ error: errorFound[0].message, type: errorFound[0].type });
   }
 };
 
