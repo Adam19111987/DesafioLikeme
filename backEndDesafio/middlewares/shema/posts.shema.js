@@ -7,7 +7,14 @@ const CreateShemasMiddle = Joi.object({
    likes : Joi.number().required()
  
 })
+const upDateShemasMiddle = Joi.object({
+   titulo : Joi.string().optional(),
+   img : Joi.string().optional(),
+   descripcion : Joi.string().optional(),
+   likes : Joi.number().optional()
+ 
+})
 
 
-export {CreateShemasMiddle};
+export {CreateShemasMiddle, upDateShemasMiddle};
 
