@@ -1,7 +1,7 @@
-import pkg from "pg"
+import pg from "pg"
 import { envs } from "../envs.js";
+const {Pool} = pg
 
-const {Pool} = pkg;
 
 
   const pool = new Pool({

@@ -4,7 +4,7 @@ import {
   setPosts,
   destroyPosts,
 } from "../models/posts.models.js";
-import { findError } from "../util/find.error.util.js";
+import {findError} from  "../util/find.error.util.js"
 
 const getPosts = async (req, res) => {
   try {
@@ -24,8 +24,7 @@ const createPosts = async (req, res) => {
     const posts = await addPosts(titulo, img, descripcion, likes);
     return res.status(201).json({ message: "ha sido creado exitosamente" });
   }  catch (error) {
-    const errorFound = findError(error.code);
-    return res.status(errorFound[0].status).json({ error: errorFound[0].message, type: errorFound[0].type });
+   return res.status(501).json({message :"archivo no cargado correctamente"})
   }
   };
 
@@ -58,10 +57,10 @@ const deletePosts = async (req, res) => {
     const posts = await destroyPosts(id);
    return res.status(204).json({ message: "mensaje eliminado con exito "});
   } catch (error) {
-    // const errorFound = findError(error.code);
-    // return res
-    //   .status(errorFound[0].status)
-    //   .json({ error: errorFound[0].message, type: errorFound[0].type });
+    const errorFound = findError(error.code);
+    return res
+      .status(errorFound[0].status)
+      .json({ error: errorFound[0].message, type: errorFound[0].type });
   }
 };
 

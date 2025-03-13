@@ -5,7 +5,7 @@ const router = express.Router();
 
 router.get("/posts", getPosts)
 router.post("/posts", Createmiddleware, createPosts )
-router.put("/posts/:post_id", upDateMiddleware, upDateposts);
+router.put("/posts/like/:post_id", upDateMiddleware, upDateposts);
 router.delete("/posts/:id", deletePosts)
 
 
